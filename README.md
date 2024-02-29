@@ -81,11 +81,45 @@ git push origin nombre-de-tu-rama-ej-funcionalidad-genial
 
 6. Abre un pull request a la rama develop de este repositorio.
 
-## Guía de Estilo
+## Convención de commits
 
-- Los commits deben ser claros y concisos, siguiendo el formato: "Breve descripción del cambio por ejemplo: Nuevo contribuidor github-username.", "Nueva funcionalidad genial x.".
+- TAGS Etiquetas
 
-- Cada cambio significativo debe estar acompañado de [pruebas (Test)](https://laravel.com/docs/testing) para asegurar su integridad y funcionalidad.
+| Etiqueta   | Descripción Corta                                       | Ejemplo de Mensaje de Commit                              |
+|------------|---------------------------------------------------------|---------------------------------------------------------|
+| `feat`     | Nueva característica o funcionalidad                    | `feat` Agregar autenticación de usuarios                |
+| `fix`      | Corrección de errores o bugs                            | `fix` Resolver error de carga infinita en la página de inicio |
+| `docs`     | Cambios en la documentación                              | `docs` Actualizar documentación del API                 |
+| `style`    | Cambios relacionados con el formato o estilo del código | `style` Alinear código según estándares de estilo       |
+| `refactor` | Refactorización del código, sin cambios funcionales     | `refactor` Reorganizar la estructura de directorios     |
+| `test`     | Añadir o modificar pruebas                               | `test` Añadir casos de prueba para la clase de utilidades |
+| `chore`    | Tareas generales, mantenimiento o actualizaciones       | `chore` Actualizar dependencias del proyecto            |
+| `perf`     | Mejora de rendimiento                                   | `perf` Optimizar algoritmo de búsqueda                  |
+| `revert`   | Revertir cambios anteriores                              | `revert` Revertir commit anterior que causó problemas  |
+| `build`    | Cambios que afectan al sistema de construcción o dependencias | `build` Actualizar versión de la herramienta de compilación |
+| `ci`       | Cambios en la configuración o scripts de integración continua | `ci` Configurar pruebas automáticas con GitHub Actions |
+
+- ESCOPES Alcance
+
+| Scope            | Descripción                                  | Ejemplo de Mensaje de Commit                                |
+|------------------|----------------------------------------------|------------------------------------------------------------|
+| `auth`           | Cambios relacionados con la autenticación    | `feat(auth)` agregar middleware para autenticación        |
+| `routes`         | Modificaciones en las rutas                  | `fix(routes)` corregir error en la definición de rutas     |
+| `views`          | Cambios en las vistas                         | `feat(views)` agregar nueva vista para el panel de control |
+| `models`         | Cambios en los modelos                        | `refactor(models)` optimizar consultas en el modelo User  |
+| `controllers`    | Modificaciones en controladores              | `fix(controllers)` manejar excepciones en el controlador   |
+| `middlewares`    | Cambios en middleware                         | `feat(middlewares)` agregar middleware de registro de acceso|
+| `migrations`     | Modificaciones en migraciones                | `chore(migrations)` actualizar tabla de usuarios           |
+| `tests`          | Cambios en pruebas unitarias o de integración | `test(tests)` añadir casos de prueba para el servicio XYZ   |
+| `config`         | Modificaciones en archivos de configuración   | `fix(config)` corregir configuración incorrecta en mail    |
+| `dependencies`   | Cambios en dependencias (Composer, npm, etc.) | `chore(dependencies)` actualizar paquetes a la última versión |
+
+
+## Guía de estilo
+
+- Los commits deben ser claros y concisos, siguiendo el formato de convención de commits, puedes utilizar varios tags y/o varios scopes segun corresponda.
+
+- Cada cambio significativo debe estar acompañado de [pruebas (test)](https://laravel.com/docs/testing) para asegurar su integridad y funcionalidad.
 
 - Las ramas de características deben ser fusionadas en la rama develop a través de pull requests.
 
