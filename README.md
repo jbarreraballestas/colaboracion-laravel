@@ -61,15 +61,15 @@ php artisan serve
 
 ## Contribución
 
-1. Haz un fork de este repositorio.
+1. Haz un fork de este repositorio y completa los pasos de instalación de tu propio repositorio fork.
 
-2. Copia la rama de desarrollo "develop" para tu funcionalidad, mejora, corrección:
+2. Copia/Cambia la rama de desarrollo "develop" para tu funcionalidad, mejora, corrección:
 
 ```bash
 git checkout -b nombre-de-tu-rama-ej-funcionalidad-genial develop
 ```
 
-3. Realiza tus cambios y asegúrate de que los tests pasen. Siempre incluye tests para cualquier nueva funcionalidad.
+3. Realiza tus cambios y asegúrate de que los tests pasen. [Siempre incluye tests para cualquier nueva funcionalidad](https://laravel.com/docs/testing).
 
 4. Realiza commits cortos, claros y concisos que expliquen tus cambios.
 
@@ -85,7 +85,7 @@ git push origin nombre-de-tu-rama-ej-funcionalidad-genial
 
 - Los commits deben ser claros y concisos, siguiendo el formato: "Breve descripción del cambio por ejemplo: Nuevo contribuidor github-username.", "Nueva funcionalidad genial x.".
 
-- Cada cambio significativo debe estar acompañado de pruebas (Test) para asegurar su integridad y funcionalidad.
+- Cada cambio significativo debe estar acompañado de [pruebas (Test)](https://laravel.com/docs/testing) para asegurar su integridad y funcionalidad.
 
 - Las ramas de características deben ser fusionadas en la rama develop a través de pull requests.
 
