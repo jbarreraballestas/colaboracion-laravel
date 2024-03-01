@@ -1,5 +1,9 @@
 # Colaboración Laravel
 
+<p align="center">
+<a href="https://github.com/jbarreraballestas/colaboracion-laravel/actions"><img src="https://github.com/jbarreraballestas/colaboracion-laravel/actions/workflows/laravel.yml/badge.svg" alt="Build Status"></a>
+</p>
+
 Este repositorio tiene como fin explicar e implementar la forma de trabajar de manera colaborativa, se realizará con fines educativos con el unico proposito de compartir conocimiento y trabajar en equipo
 
 ## Prerrequisitos para trabajar en Laravel
