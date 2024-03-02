@@ -74,14 +74,19 @@ jobs:
       id: package_changed
       run: echo ::set-output name=CHANGED::$(if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'package\.json'; then echo true; else echo false; fi)
 
+    - name: Check for changes in CSS and JS files
+        id: check_changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^resources/\(css\|js\)/')
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "Files have changed."
+            echo "::set-output name=CHANGED::true"
+          else
+            echo "No changes detected."
+            echo "::set-output name=CHANGED::false"
+          fi
+
     - name: Run npm install and build
-      uses: dorny/paths-filter@v3
-      id: changes
-      with:
-        filters: |
-          resources:
-            - 'resources/css/**'
-            - 'resources/js/**'
-      if: steps.package_changed.outputs.CHANGED == 'true' || steps.changes.outputs.resources == 'true'
+      if: steps.package_changed.outputs.CHANGED == 'true' || steps.check_changes.outputs.CHANGED == 'true'
       run: |
         ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && npm install && npm run build"
