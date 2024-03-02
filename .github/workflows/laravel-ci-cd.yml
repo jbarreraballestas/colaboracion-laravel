@@ -53,7 +53,7 @@ jobs:
     - name: rsync deployments
       uses: burnett01/rsync-deployments@6.0.0
       with:
-        switches: -avzr --delete --exclude='.env'
+        switches: -avzr --delete --exclude='.env' --exclude='public' --exclude='vendor' --exclude='node_modules' --exclude='storage' --exclude='bootstrap/cache' --exclude='*.log'
         path: ./
         remote_path: ${{ secrets.REMOTE_PATH }}
         remote_host: ${{ secrets.REMOTE_HOST }}
