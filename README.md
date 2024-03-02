@@ -57,7 +57,19 @@ php artisan key:generate
 php artisan migrate
 ```
 
-6. Inicia el servidor local:
+6. Instalar dependencias de node:
+
+```bash
+npm install
+```
+
+7. Construir las dependencias:
+
+```bash
+npm run build
+```
+
+8. Inicia el servidor local:
 
 ```bash
 php artisan serve
