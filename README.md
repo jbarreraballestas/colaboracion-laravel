@@ -122,6 +122,7 @@ git push origin nombre-de-tu-rama-ej-funcionalidad-genial
 | `auth`           | Cambios relacionados con la autenticación    | `feat(auth)` agregar middleware para autenticación        |
 | `routes`         | Modificaciones en las rutas                  | `fix(routes)` corregir error en la definición de rutas     |
 | `views`          | Cambios en las vistas                         | `feat(views)` agregar nueva vista para el panel de control |
+| `components`     | Cambios en componentes de las vistas           | `feat(components, views)` Crear un nuevo componente modal | 
 | `models`         | Cambios en los modelos                        | `refactor(models)` optimizar consultas en el modelo User  |
 | `controllers`    | Modificaciones en controladores              | `fix(controllers)` manejar excepciones en el controlador   |
 | `middlewares`    | Cambios en middleware                         | `feat(middlewares)` agregar middleware de registro de acceso|
