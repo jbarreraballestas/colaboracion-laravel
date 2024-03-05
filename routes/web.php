@@ -18,6 +18,10 @@ Route::view('contributors', 'contributors')->name('contributors');
 Route::middleware('auth')->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('profile', 'profile')->name('profile');
+    Route::get('logout', function () {
+        session()->flush();
+        return redirect('/');
+    })->name('logout');
 });
 
 
