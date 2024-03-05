@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Roles;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,8 @@ Route::middleware('auth')->group(function () {
         session()->flush();
         return redirect('/');
     })->name('logout');
+
+    Route::get('roles', Roles::class)->name('roles');
 });
 
 
