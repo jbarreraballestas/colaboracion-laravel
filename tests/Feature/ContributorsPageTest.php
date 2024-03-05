@@ -1,15 +1,15 @@
 <?php
 
-namespace Tests\Feature\Cetiia;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 
-class ContributorsPage extends TestCase
+class ContributorsPageTest extends TestCase
 {
     /**
      * A basic feature test example.
      */
-    public function prueba_que_la_pagina_de_contribuidores_funcione_correctamente(): void
+    public function test_contributors_page(): void
     {
         $response = $this->get('/contributors');
 
