@@ -6,18 +6,21 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class B5Nav extends Component
+class B5Error extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct(){}
+    public function __construct(public string $input)
+    {
+        //
+    }
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        return view('components.b5-nav', ['route_name'=>request()->route()->getName()]);
+        return view('components.b5-error');
     }
 }

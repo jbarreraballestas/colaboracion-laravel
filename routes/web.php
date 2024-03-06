@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
         return redirect('/');
     })->name('logout');
 
-    Route::get('roles', Roles::class)->name('roles');
+    Route::get('admin/roles', Roles::class)->name('admin.roles');
 });
 
 
