@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Roles;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->name('welcome');
+Route::view('contributors', 'contributors')->name('contributors');
+Route::middleware('auth')->group(function () {
+    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::view('profile', 'profile')->name('profile');
+    Route::get('logout', function () {
+        session()->flush();
+        return redirect('/');
+    })->name('logout');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+    Route::get('admin/roles', Roles::class)->name('admin.roles');
+});
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+
 
 require __DIR__.'/auth.php';
