@@ -106,7 +106,7 @@ git push origin nombre-de-tu-rama-ej-funcionalidad-genial
 | `feat`     | Nueva característica o funcionalidad                    | `feat` Agregar autenticación de usuarios                |
 | `fix`      | Corrección de errores o bugs                            | `fix` Resolver error de carga infinita en la página de inicio |
 | `docs`     | Cambios en la documentación                              | `docs` Actualizar documentación del API                 |
-| `style`    | Cambios relacionados con el formato o estilo del código | `style` Alinear código según estándares de estilo       |
+| `style`    | Cambios que no afectan el significado del código         | `style` espacios en blanco, formato, puntos y comas faltantes, etc |
 | `refactor` | Refactorización del código, sin cambios funcionales     | `refactor` Reorganizar la estructura de directorios     |
 | `test`     | Añadir o modificar pruebas                               | `test` Añadir casos de prueba para la clase de utilidades |
 | `chore`    | Tareas generales, mantenimiento o actualizaciones       | `chore` Actualizar dependencias del proyecto            |
