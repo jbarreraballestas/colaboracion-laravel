@@ -1,6 +1,6 @@
 @props(['id', 'title', 'body', 'footer'])
 
-<div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}Label"
+<div class="modal fade" id="{{ $id }}" tabindex="-1" aria-labelledby="{{ $id }}Label" {{$attributes}}
     aria-hidden="true">
     <div {{ $attributes->class(['modal-dialog']) }}>
         <div class="modal-content">
