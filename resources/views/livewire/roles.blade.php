@@ -48,32 +48,23 @@
         </div>
     </div>
 
-    <div wire:ignore.self class="modal fade" id="modal-role" tabindex="-1" aria-labelledby="modal-roleLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="modal-roleLabel">{{ __($title) }}</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="rolename" class="form-label">{{ __('Name') }}</label>
-                        <input type="text" class="form-control" id="rolename" wire:model="role.name" onchange="@this.role.slug = slugify(this.value)">
-                        <x-b5-error input="role.name"/>
-                    </div>
-                    <div class="mb-3">
-                        <label for="roleslug" class="form-label">{{ __('Slug') }}</label>
-                        <input type="text" class="form-control" id="roleslug" wire:model="role.slug" readonly>
-                        <x-b5-error input="role.slug"/>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <button wire:click="save" type="button" class="btn btn-primary">{{ __('Save changes') }}</button>
-                </div>
+    <x-b5-modal wire:ignore.self id="modal-role" :title="$title" class="modal-dialog-centered">
+        <x-slot:body>
+            <div class="mb-3">
+                <label for="rolename" class="form-label">{{ __('Name') }}</label>
+                <input type="text" class="form-control" id="rolename" wire:model="role.name"
+                    onchange="@this.role.slug = slugify(this.value)">
+                <x-b5-error input="role.name" />
             </div>
-        </div>
-    </div>
+            <div class="mb-3">
+                <label for="roleslug" class="form-label">{{ __('Slug') }}</label>
+                <input type="text" class="form-control" id="roleslug" wire:model="role.slug" readonly>
+                <x-b5-error input="role.slug" />
+            </div>
+        </x-slot>
+        <x-slot:footer>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
+            <button wire:click="save" type="button" class="btn btn-primary">{{ __('Save changes') }}</button>
+        </x-slot>
+    </x-b5-modal>
 </div>
