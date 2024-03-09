@@ -17,11 +17,11 @@ class Roles extends Component
         return  [
             'role.name' => [
                 'required',
-                'unique:roles,name,' . $this->role->id
+                'unique:roles,name,' . ($this->role->id ?? 0)
             ],
             'role.slug' => [
                 'required',
-                'unique:roles,slug,' . $this->role->id
+                'unique:roles,slug,' . ($this->role->id ?? 0)
             ],
         ];
     }
