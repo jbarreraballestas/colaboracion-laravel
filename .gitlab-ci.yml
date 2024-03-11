@@ -29,6 +29,6 @@ test:
 deploy_develop:
   script: echo "This job does NOT create double pipelines!"
   only:
-    - master
+    - develop
   when: on_success
   
