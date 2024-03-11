@@ -1,4 +1,6 @@
-deploy:
+variables:
+  DB_CONNECTION: sqlite
+test:
   image: jhordybarreradev/ubuntu-laravel:latest
   stage: testing
   before_script:
@@ -9,6 +11,8 @@ deploy:
     - cp .env.example .env
     - composer install
     - php artisan key:generate
+    - chmod -R 777 storage bootstrap/cache
+    - touch database/database.sqlite
     - php artisan migrate
     - npm install
     - npm run build
