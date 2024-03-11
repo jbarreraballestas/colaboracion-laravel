@@ -9,7 +9,6 @@ default:
       - node_modules/
 test:
   image: jhordybarreradev/ubuntu-laravel:latest
-  stage: testing
   before_script:
     - date
     - php --version
@@ -26,5 +25,7 @@ test:
     - npm install
     - npm run build
     - vendor/bin/phpunit
-stages:
-  - testing
+
+job:
+  script: echo "This job does NOT create double pipelines!"
+  
