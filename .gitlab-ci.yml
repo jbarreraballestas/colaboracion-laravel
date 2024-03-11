@@ -17,6 +17,7 @@ test:
     - php artisan migrate
     - npm install
     - npm run build
-    - vendor/bin/phpunit
+    - php artisan test
+    # - vendor/bin/phpunit
 stages:
   - testing
