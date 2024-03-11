@@ -1,6 +1,11 @@
 variables:
   DB_CONNECTION: sqlite
   DB_DATABASE: database/database.sqlite
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - vendor/
+    - node_modules/
 test:
   image: jhordybarreradev/ubuntu-laravel:latest
   stage: testing
