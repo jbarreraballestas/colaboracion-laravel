@@ -1,11 +1,12 @@
 variables:
   DB_CONNECTION: sqlite
   DB_DATABASE: database/database.sqlite
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - vendor/
-    - node_modules/
+default:
+  cache: &global_cache
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - vendor/
+      - node_modules/
 test:
   image: jhordybarreradev/ubuntu-laravel:latest
   stage: testing
@@ -13,16 +14,28 @@ test:
     - date
     - php --version
     - composer --version
+    - node --version
+    - npm --version
   script:
     - cp .env.example .env
     - composer install
     - php artisan key:generate
-    - chmod -R 777 storage bootstrap/cache
+    - chmod -R 755 storage bootstrap/cache
     - touch database/database.sqlite
     - php artisan migrate
     - npm install
     - npm run build
-    - php artisan test
-    # - vendor/bin/phpunit
+    - vendor/bin/phpunit
+
+deploy_develop:
+  <<: *global_cache
+  stage: deploy_develop
+  script:
+    - echo "Deploying develop..."
+  only:
+    - develop
+  when: on_success
+
 stages:
   - testing
+  - deploy_develop
