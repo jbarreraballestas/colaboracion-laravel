@@ -6,7 +6,7 @@ deploy:
     - php --version
     - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php && php -r "unlink('composer-setup.php');" && mv composer.phar /usr/local/bin/composer
     - composer --version
-    - apt update && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng12-dev 
+    - apt update && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev
     - docker-php-ext-install -j$(nproc) iconv intl xml soap mcrypt opcache pdo pdo_mysql mysqli mbstring \
   script:
     - cp .env.example .env
