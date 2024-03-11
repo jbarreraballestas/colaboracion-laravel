@@ -27,10 +27,4 @@ test:
     - npm run build
     - vendor/bin/phpunit
 
-develop:
-  stage: deploy_develop
-  script:
-    - echo "Deploying develop..."
-  only:
-    - develop
-  when: on_success
+
