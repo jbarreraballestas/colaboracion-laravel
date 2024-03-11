@@ -26,5 +26,5 @@ test:
     - npm install
     - npm run build
     - vendor/bin/phpunit
-
-
+stages:
+  - testing
