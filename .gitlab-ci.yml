@@ -30,7 +30,7 @@ deploy_develop:
   variables:
     SECURE_FILES_DOWNLOAD_PATH: 'secure-files'
   script:
-    - apt install curl -y
+    - apt update && apt install curl -y
     - curl --silent "https://git.cetiia.co/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
     - echo "Deploy develop!"
     - ls -la secure-files
