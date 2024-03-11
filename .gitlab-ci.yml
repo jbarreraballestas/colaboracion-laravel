@@ -30,8 +30,9 @@ deploy_develop:
   variables:
     SECURE_FILES_DOWNLOAD_PATH: './'
   script:
-    - echo "Deploy develop!"
-    - ssh $CD_USER@$CD_DEVELOP_HOST -i $CD_KEY "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
+    - echo "Deploy develop on $CD_DEVELOP_HOST!"
+
+    # - ssh $CD_USER@$CD_DEVELOP_HOST -i $CD_KEY "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
   only:
     - develop
   when: on_success
