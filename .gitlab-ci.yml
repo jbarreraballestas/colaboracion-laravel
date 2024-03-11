@@ -5,6 +5,5 @@ deploy:
     - echo "Before"
   script:
     - echo "Test script"
-    - lsb_release -a
 stages:
   - deploy
