@@ -1,5 +1,6 @@
 variables:
   DB_CONNECTION: sqlite
+  DB_DATABASE: database/database.sqlite
 test:
   image: jhordybarreradev/ubuntu-laravel:latest
   stage: testing
