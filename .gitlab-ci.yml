@@ -27,5 +27,6 @@ test:
     - vendor/bin/phpunit
 
 job:
+  <<: *global_cache
   script: echo "This job does NOT create double pipelines!"
   
