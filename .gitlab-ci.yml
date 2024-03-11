@@ -31,10 +31,10 @@ deploy_develop:
     SECURE_FILES_DOWNLOAD_PATH: 'secure-files'
   script:
     - apt update && apt install curl -y
-    - curl --silent "https://git.cetiia.co/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
     - echo "Deploy develop!"
     - ls -la secure-files
-    # - ssh $CD_USER@$CD_DEVELOP_HOST -i $CD_KEY "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
+    # - ssh $CD_USER@$CD_DEVELOP_HOST -i secure-files/$CD_KEY "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
   only:
     - develop
   when: on_success
