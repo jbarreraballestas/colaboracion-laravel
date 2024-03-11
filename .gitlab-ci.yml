@@ -1,10 +1,16 @@
 deploy:
   image: php:8.2
-  stage: deploy
+  stage: testing
   before_script:
-    - echo "Before"
-  script:
-    - echo "Test script"
+    - date
     - php --version
+  script:
+    - cp .env.example .env
+    - composer install
+    - php artisan key:generate
+    - php artisan migrate
+    - npm install
+    - npm run build
+    - vendor/bin/phpunit
 stages:
-  - deploy
+  - testing
