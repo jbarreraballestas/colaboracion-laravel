@@ -1,13 +1,13 @@
 variables:
   DB_CONNECTION: sqlite
   DB_DATABASE: database/database.sqlite
-default:
-  cache: &global_cache
+
+test:
+  cache:
     key: $CI_COMMIT_REF_SLUG
     paths:
       - vendor/
       - node_modules/
-test:
   image: jhordybarreradev/ubuntu-laravel:latest
   before_script:
     - date
@@ -27,6 +27,5 @@ test:
     - vendor/bin/phpunit
 
 job:
-  <<: *global_cache
   script: echo "This job does NOT create double pipelines!"
   
