@@ -30,7 +30,7 @@ deploy_develop:
   variables:
     SECURE_FILES_DOWNLOAD_PATH: 'secure-files'
   script:
-    - apt update && apt install curl -y
+    - apt update && apt install curl ssh -y
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
     - echo "Deploying develop!"
     - ssh $CD_USER@$CD_DEVELOP_HOST -i secure-files/$CD_KEY "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
