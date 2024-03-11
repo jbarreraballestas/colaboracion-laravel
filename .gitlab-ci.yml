@@ -26,6 +26,9 @@ test:
     - npm run build
     - vendor/bin/phpunit
 
-job:
+deploy_develop:
   script: echo "This job does NOT create double pipelines!"
+  only:
+    - master
+  when: on_success
   
