@@ -27,7 +27,7 @@ test:
     - vendor/bin/phpunit
 
 deploy_develop:
-  script: echo "Deploy develop!"
+  script: echo "This job does NOT create double pipelines!"
   only:
     - develop
   when: on_success
