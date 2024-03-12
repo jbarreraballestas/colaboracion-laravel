@@ -61,4 +61,7 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         key: ${{ secrets.REMOTE_KEY }}
         port: ${{ secrets.REMOTE_PORT }}
-        script: cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build
+        script: |
+          curl ifconfig.me
+          pwd
+# cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build
