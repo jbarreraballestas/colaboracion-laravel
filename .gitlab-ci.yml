@@ -28,11 +28,8 @@ test:
 
 deploy_develop:
   image: jhordybarreradev/ubuntu-laravel:latest
-  variables:
-    SECURE_FILES_DOWNLOAD_PATH: 'secure-files'
   before_script:
-    - DEBIAN_FRONTEND=noninteractive apt update && DEBIAN_FRONTEND=noninteractive apt install curl ssh -y
-    - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    - DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install ssh -y
     - mkdir -p ~/.ssh
     - echo "$CD_KEY" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
@@ -44,6 +41,8 @@ deploy_develop:
   script:
     - echo "Deploying develop!"
     - ssh $CD_USER@$CD_DEVELOP_HOST -i secure-files/id_rsa "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
+  after_script:
+    - rm -rf ~/.ssh
   only:
     - develop
   when: on_success
