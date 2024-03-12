@@ -68,7 +68,7 @@ jobs:
     - name: Composer Install
       if: steps.composer_changed.outputs.CHANGED == 'true'
       run: |
-        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && composer install"
+        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && composer install"
 
     - name: Check for changes in CSS and JS files or package.json
       uses: tj-actions/verify-changed-files@v19
@@ -82,4 +82,4 @@ jobs:
     - name: Run npm install and build
       if: steps.check_changes.outputs.files_changed == 'true'
       run: |
-        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && npm install && npm run build"
+        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && npm install && npm run build"
