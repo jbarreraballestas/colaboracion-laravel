@@ -62,6 +62,4 @@ jobs:
         key: ${{ secrets.REMOTE_KEY }}
         port: ${{ secrets.REMOTE_PORT }}
         script: |
-          curl ifconfig.me
-          pwd
-# cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build
+          bash colaboracion-laravel.sh
