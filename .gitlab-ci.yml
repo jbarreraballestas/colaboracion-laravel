@@ -33,8 +33,9 @@ deploy_develop:
   before_script:
     - DEBIAN_FRONTEND=noninteractive apt update && DEBIAN_FRONTEND=noninteractive apt install curl ssh -y
     - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
-    - chmod 600 secure-files/$CD_KEY
     - mkdir -p ~/.ssh
+    - echo "$CD_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
     - touch ~/.ssh/config
     - echo "HOST *" > ~/.ssh/config
     - echo "StrictHostKeyChecking no" >> ~/.ssh/config
@@ -42,8 +43,7 @@ deploy_develop:
 
   script:
     - echo "Deploying develop!"
-    - cat secure-files/$CD_KEY
-    - ssh $CD_USER@$CD_DEVELOP_HOST -i secure-files/$CD_KEY "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
+    - ssh $CD_USER@$CD_DEVELOP_HOST -i secure-files/id_rsa "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
   only:
     - develop
   when: on_success
