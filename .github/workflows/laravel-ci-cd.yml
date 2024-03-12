@@ -58,4 +58,4 @@ jobs:
         port: ${{ secrets.REMOTE_PORT }}
         script: |
           ls
-          bash colaboracion-laravel.sh
+#          bash colaboracion-laravel.sh
