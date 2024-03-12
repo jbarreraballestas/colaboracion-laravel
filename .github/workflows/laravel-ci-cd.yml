@@ -54,13 +54,6 @@ jobs:
       run: |
         curl ifconfig.me/ip
         curl novato.pro/github
-    - name: Prepare key
-      run: |
-        mkdir -p ~/.ssh/
-        echo "HOST *" > ~/.ssh/config
-        echo "StrictHostKeyChecking no" >> ~/.ssh/config
-        echo "${{ secrets.REMOTE_KEY }}" > ~/.ssh/remote_key
-        chmod 600 ~/.ssh/remote_key
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -68,5 +61,6 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.REMOTE_PASSWORD }}
         port: ${{ secrets.REMOTE_PORT }}
-        script: cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build
+        script: whoami
 
+# cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build
