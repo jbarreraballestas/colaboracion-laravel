@@ -50,6 +50,8 @@ jobs:
     if: github.ref == 'refs/heads/develop'
     steps:
     - uses: actions/checkout@v4
+    - name: Ip address
+      run: curl ifconfig.me
     - name: Pull and install dependencies
       run: |
         mkdir -p ~/.ssh/
@@ -57,7 +59,6 @@ jobs:
         echo "StrictHostKeyChecking no" >> ~/.ssh/config
         echo "${{ secrets.REMOTE_KEY }}" > ~/.ssh/remote_key
         chmod 600 ~/.ssh/remote_key
-        curl ifconfig.me
         ssh -vvv ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -i ~/.ssh/remote_key -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build"
         rm -f ~/.ssh/remote_key
 
