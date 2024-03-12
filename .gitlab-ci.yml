@@ -27,7 +27,22 @@ test:
     - vendor/bin/phpunit
 
 deploy_develop:
-  script: echo "Deploy develop!"
+  image: jhordybarreradev/ubuntu-laravel:latest
+  before_script:
+    - DEBIAN_FRONTEND=noninteractive apt-get -qq update && DEBIAN_FRONTEND=noninteractive apt-get -qq install ssh -y
+    - mkdir -p ~/.ssh
+    - echo "$CD_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - touch ~/.ssh/config
+    - echo "HOST *" > ~/.ssh/config
+    - echo "StrictHostKeyChecking no" >> ~/.ssh/config
+    - curl ifconfig.me
+
+  script:
+    - echo "Deploying develop!"
+    - ssh $CD_USER@$CD_DEVELOP_HOST -i secure-files/id_rsa "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
+  after_script:
+    - rm -rf ~/.ssh
   only:
     - develop
   when: on_success
