@@ -50,12 +50,13 @@ jobs:
     if: github.ref == 'refs/heads/develop'
     steps:
     - name: Pull and install dependencies
+      uses: actions/cache@v4
       run: |
         mkdir -p ~/.ssh/
         echo "HOST *" > ~/.ssh/config
         echo "StrictHostKeyChecking no" >> ~/.ssh/config
         echo "${{ secrets.REMOTE_KEY }}" > ~/.ssh/remote_key
         chmod 600 ~/.ssh/remote_key
-        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -i ~/.ssh/remote_key -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && npm install && npm run build"
+        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -i ~/.ssh/remote_key -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build"
         rm -f ~/.ssh/remote_key
 
