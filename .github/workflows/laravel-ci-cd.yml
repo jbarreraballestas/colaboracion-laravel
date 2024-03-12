@@ -61,10 +61,6 @@ jobs:
         echo "StrictHostKeyChecking no" >> ~/.ssh/config
         echo "${{ secrets.REMOTE_KEY }}" > ~/.ssh/remote_key
         chmod 600 ~/.ssh/remote_key
-    - name: ssh to pull and install dependencies
-      run: |
-        ssh -vvv ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -i ~/.ssh/remote_key -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build"
-        rm -f ~/.ssh/remote_key
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -72,5 +68,5 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}
         password: ${{ secrets.REMOTE_PASSWORD }}
         port: ${{ secrets.REMOTE_PORT }}
-        script: whoami
+        script: cd ${{ secrets.REMOTE_PATH }} && git pull && composer install && npm install && npm run build
 
