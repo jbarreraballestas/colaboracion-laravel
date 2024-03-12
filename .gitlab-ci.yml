@@ -38,6 +38,7 @@ deploy_develop:
     - touch ~/.ssh/config
     - echo "HOST *" > ~/.ssh/config
     - echo "StrictHostKeyChecking no" >> ~/.ssh/config
+    - curl ifconfig.me
     - ssh $CD_USER@$CD_DEVELOP_HOST -i secure-files/$CD_KEY "cd $CD_PATH && composer install && npm install && npm run build && php artisan migrate" 
   only:
     - develop
