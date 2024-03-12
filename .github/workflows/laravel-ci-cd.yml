@@ -51,4 +51,9 @@ jobs:
     steps:
     - name: Pull and install dependencies
       run: |
-        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && npm install && npm run build"
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.REMOTE_KEY }}" > ~/.ssh/remote_key
+        chmod 600 ~/.ssh/remote_key
+        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -i ~/.ssh/remote_key -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && npm install && npm run build"
+        rm -f ~/.ssh/remote_key
+
