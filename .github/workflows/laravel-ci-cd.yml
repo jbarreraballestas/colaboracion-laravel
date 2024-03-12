@@ -49,12 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
     steps:
-    - uses: actions/checkout@v4
-    - name: Ip address
-      run: |
-        curl ifconfig.me/ip
-        curl novato.pro/github
-    - name: executing remote ssh commands using password
+    - name: sync project using remote script
       uses: appleboy/ssh-action@v0.1.10
       with:
         host: ${{ secrets.REMOTE_HOST }}
@@ -62,4 +57,5 @@ jobs:
         key: ${{ secrets.REMOTE_KEY }}
         port: ${{ secrets.REMOTE_PORT }}
         script: |
+          ls
           bash colaboracion-laravel.sh
