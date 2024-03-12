@@ -29,7 +29,7 @@ test:
 deploy_develop:
   image: jhordybarreradev/ubuntu-laravel:latest
   before_script:
-    - DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install ssh -y
+    - DEBIAN_FRONTEND=noninteractive apt-get -qq update && DEBIAN_FRONTEND=noninteractive apt-get -qq install ssh -y
     - mkdir -p ~/.ssh
     - echo "$CD_KEY" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
