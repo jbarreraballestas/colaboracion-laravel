@@ -49,37 +49,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
     steps:
-    - uses: actions/checkout@v4
-    - name: rsync deployments
-      uses: burnett01/rsync-deployments@6.0.0
-      with:
-        switches: -avzr --delete --exclude='.env' --exclude='public' --exclude='vendor' --exclude='node_modules' --exclude='storage' --exclude='bootstrap/cache' --exclude='*.log'
-        path: ./
-        remote_path: ${{ secrets.REMOTE_PATH }}
-        remote_host: ${{ secrets.REMOTE_HOST }}
-        remote_port: ${{ secrets.REMOTE_PORT }}
-        remote_user: ${{ secrets.REMOTE_USER }}
-        remote_key: ${{ secrets.REMOTE_KEY }}
-
-    - name: Check if composer.json changed
-      id: composer_changed
-      run: echo ::set-output name=CHANGED::$(if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep 'composer\.json'; then echo true; else echo false; fi)
-
-    - name: Composer Install
-      if: steps.composer_changed.outputs.CHANGED == 'true'
-      run: |
-        ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && composer install"
-
-    - name: Check for changes in CSS and JS files or package.json
-      uses: tj-actions/verify-changed-files@v19
-      id: check_changes
-      with:
-        files: |
-            resources/js
-            resources/css
-            package.json
-
-    - name: Run npm install and build
-      if: steps.check_changes.outputs.files_changed == 'true'
+    - name: Pull and install dependencies
       run: |
         ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} "cd ${{ secrets.REMOTE_PATH }} && git pull && npm install && npm run build"
