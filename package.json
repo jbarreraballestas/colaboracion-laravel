@@ -10,7 +10,7 @@
         "autoprefixer": "^10.4.27",
         "axios": "^1.18.0",
         "laravel-vite-plugin": "^3.0.1",
-        "postcss": "^8.5.14",
+        "postcss": "^8.5.25",
         "tailwindcss": "^4.2.2",
         "vite": "^8.0.16"
     }
